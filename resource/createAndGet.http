@@ -26,7 +26,7 @@ CONTENT-TYPE: application/json
 GET http://localhost:3000/todos
 
 ### 삭제
-DELETE http://localhost:3000/todos
+DELETE http://localhost:3000/todos/1
 CONTENT-TYPE: application/json
 
 {
