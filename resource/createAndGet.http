@@ -1,0 +1,47 @@
+### 생성전 빈 값이다
+GET http://localhost:3000/todos
+
+### 생성
+POST http://localhost:3000/todos
+CONTENT-TYPE: application/json
+
+{
+  "name": "hello1",
+  "completed": false
+}
+
+### 생성 후 조회 시 1개의 값이 나온다.
+GET http://localhost:3000/todos
+
+### 업데이트
+PUT http://localhost:3000/todos/1
+CONTENT-TYPE: application/json
+
+{
+  "name": "hello2",
+  "completed": true
+}
+
+### 업데이트 후 업데이트된 값이 나온다.
+GET http://localhost:3000/todos
+
+### 삭제
+DELETE http://localhost:3000/todos
+CONTENT-TYPE: application/json
+
+{
+  "name": "hello1",
+  "completed": false
+}
+
+### 삭제 후 조회시 값이 나오지 않는다.
+GET http://localhost:3000/todos
+
+### 없는 값을 업데이트하면 404가 나온다
+PUT http://localhost:3000/todos/1
+CONTENT-TYPE: application/json
+
+{
+  "name": "hello1",
+  "completed": false
+}
