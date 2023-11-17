@@ -1,8 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	mux2 "github.com/gorilla/mux"
 	"github.com/unrolled/render"
+	"log"
 	"net/http"
 	"sort"
 )
@@ -28,7 +30,17 @@ func DeleteTodoListHandler(writer http.ResponseWriter, request *http.Request) {
 }
 
 func PostTodoListHandler(writer http.ResponseWriter, request *http.Request) {
-
+	var todo Todo
+	err := json.NewDecoder(request.Body).Decode(&todo)
+	if err != nil {
+		log.Fatal(err)
+		writer.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	lastId++
+	todo.ID = lastId
+	todoMap[lastId] = todo
+	rd.JSON(writer, http.StatusCreated, todo)
 }
 
 func GetTodoListHandler(writer http.ResponseWriter, request *http.Request) {
