@@ -6,7 +6,7 @@ type Todo struct {
 	Completed bool   `json:"completed,omitempty"`
 }
 
-var todoMap map[int]Todo
+var todoMap map[int]Todo = make(map[int]Todo)
 var lastId int = 0
 
 type Todos []Todo
