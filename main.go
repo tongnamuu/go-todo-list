@@ -2,8 +2,12 @@ package main
 
 import (
 	mux2 "github.com/gorilla/mux"
+	"github.com/unrolled/render"
 	"net/http"
+	"sort"
 )
+
+var rd *render.Render
 
 func MakeWebHandler() http.Handler {
 	mux := mux2.NewRouter()
@@ -28,7 +32,12 @@ func PostTodoListHandler(writer http.ResponseWriter, request *http.Request) {
 }
 
 func GetTodoListHandler(writer http.ResponseWriter, request *http.Request) {
-
+	list := make(Todos, 0)
+	for _, todo := range todoMap {
+		list = append(list, todo)
+	}
+	sort.Sort(list)
+	rd.JSON(writer, http.StatusOK, list)
 }
 
 func main() {
