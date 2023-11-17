@@ -41,6 +41,7 @@ func UpdateTodoListHandler(writer http.ResponseWriter, request *http.Request) {
 	if todo, ok := todoMap[id]; ok {
 		todo.Name = newTodo.Name
 		todo.Completed = newTodo.Completed
+		todoMap[id] = todo
 		rd.JSON(writer, http.StatusOK, Success{true})
 		return
 	}

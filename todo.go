@@ -3,7 +3,7 @@ package main
 type Todo struct {
 	ID        int    `json:"id,omitempty"`
 	Name      string `json:"name"`
-	Completed bool   `json:"completed,omitempty"`
+	Completed bool   `json:"completed"`
 }
 
 var todoMap map[int]Todo = make(map[int]Todo)
